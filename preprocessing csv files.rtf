@@ -1,0 +1,13 @@
+processing of county level file from johns hopkins:
+
+located in \csse_covid_19_data\csse_covid_19_daily_reports
+
+filename convention: ‘mm-dd-yyyy.csv’
+
+1. change name to jhu_counties.csv
+2. delete all rows which are not counties of US states (file comes sorted by country)
+3. delete territories except puerto rico (marianas, guam, any cruise line entries)
+4. reformat Last_Update column (format cells as date in mm/dd/yy format) to lose the time stamp part
+5. delete blank columns (hospitalizations, UID, Country)
+6. change FIPS to fips and move that column to first (‘A’) column
+7. format fips as 5 digit: 2state + 3county, single digit state fips need to be left-filled with 0
