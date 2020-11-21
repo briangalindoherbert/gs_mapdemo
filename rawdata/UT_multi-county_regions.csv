@@ -1,0 +1,7 @@
+﻿UID,Region,stFIPS,Lat,Long,Long_Name,Pop,fips0,fips1,fips2,fips3,fips4,fips5,name0,name1,name2,name3,name4,name5,pop0,pop1,pop2,pop3,pop4,pop5
+84070015,Bear River,49,41.52106798,-113.0832816,'Cache-Rich-Box Elder UT',186818,"49005","49033","49003",,,,Cache,Rich,Box Elder,,,,128289,2483,56046,,,
+84070016,Central Utah,49,39.37231946,-111.5758676,'Sanpete-Millard-Piute-Wayne-Juab-Sevier UT',81954,"49039","49027","49031","49055","49023","49041",Sanpete,Millard,Piute,Wayne,Juab,Sevier,30939,13188,1479,2711,12017,21620
+84070017,Southeast Utah,49,38.99617072,-110.7013958,'Grand-Carbon-Emery UT',40229,49019,49007,49015,,,,Grand,Carbon,Emery,,,,9754,20463,10012,,,
+84070018,Southwest Utah,49,37.85447192,-111.4418764,'Wash.-Kane-Garfield-Iron-Beaver UT',252042,49053,49025,49017,49021,49001,,Washington,Kane,Garfield,Iron,Beaver,,177556,7886,5051,54839,6710,
+84070019,TriCounty,49,40.12491499,-109.5174415,'Uintah-Duchesne-Daggett UT',56622,49047,49013,49009,,,,Uintah,Duchesne,Daggett,,,,35734,19938,950,,,
+84070020,Weber-Morgan,49,41.27116049,-111.9145117,'Weber-Morgan UT',272337,49057,49029,,,,,Weber,Morgan,,,,,260213,12124,,,,
