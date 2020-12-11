@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+.gitignore
+.idea/.gitignore
+.idea/aws.xml
+.idea/gs_mapdemo.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations/
+.idea/vcs.xml
+__pycache__/

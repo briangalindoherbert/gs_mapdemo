@@ -140,7 +140,7 @@ def get_statepop(stpopfile: str):
 	"""
 	get_statepop builds a Dataframe, indexed on State Fips, with est 2020 population
 	"""
-	df_st = pd.read_csv(stpopfile, usecols={1,2}, dtype={'pop':int})
+	df_st = pd.read_csv(stpopfile, usecols={1,2}, dtype={'fips':str, 'pop':int})
 	df_st.set_index('fips', drop=True, inplace=True)
 	df_st.sort_index()
 	return df_st
@@ -157,11 +157,12 @@ def get_states(df_pop: pd.DataFrame, jhu_stcov: str):
 	dfst = pd.read_csv(jhu_stcov, dtype={'fips': str}, parse_dates=[3],
 		dayfirst=False, infer_datetime_format=True)
 	dfst['Last_Update'] = pd.to_datetime(dfst['Last_Update'], format='%m/%d/%y', exact=True)
-	dfst.set_index('fips', drop=False, inplace=True, verify_integrity=True)
+	dfst.set_index('FIPS', drop=False, inplace=True, verify_integrity=True)
 	dfst.sort_index(inplace=True)
 	df = dfst.join(df_pop, how='left', lsuffix='', rsuffix='')
 	df['fatalityrate'] = (df['Deaths'] / df['pop'])* 100
 	df.round({'fatalityrate': 2})
+	df['Incident_Rate'] = df['Incident_Rate'] / 1000
 
 	return df
 

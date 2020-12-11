@@ -9,8 +9,25 @@ gs_datadict contains collections to map the following:
 import pandas as pd
 from typing import List, Dict, Set
 
-JHUC_COLNUM: Set = set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11])
+# I have removed \n (end of line) from the grep patterns, as they are stripped prior to calling re.match
+# for non-greedy matches (find first instance not longest), use suffix ? after multi-operator, as in *? or +?
+# 1. nonUS: remove lines for non-U.S. entries (no FIPS AND Country_reg != US)
+# 2. unassigned: remove lines for unassigned and 'out of' entries (5 digit FIPS starting with '9', ex. 90001)
+# 3. puertorico: remove lines for Puerto Rico if states only desired (FIPS is 72xxx OR Admin2 = "Puerto Rico")
+# 4. outof: remove line for 'out of <state name>' (5 digit FIPS starting with '8', ex. 80001)
+# 5. nonstate: remove lines for guam, virgin islands and northern marianas (FIPS is two digits)
+# 6. mod_padfips: pattern to find 4-digit FIPS and left-pad w/zero, SPLIT: | separates grep pattern from pseudo-code.
+#                 to right of | is pseudo-code for other field mods. this is done to max re-use across source files
+#   Pseudo-code how-to: each mod is enclosed in [], with elements delimited with : (colon)
+#       element to left of colon is field or fields to mod, to the right of colon is operation to perform on the field
+GREP_PREP: Dict = {"notUS":"^(,,)(.*?,)(.{0,20},)(.+)", "unassigned":"^(9\d{4},)(.+)", "puertorico":
+                   "^(72\d{3},)(.+)", "outof":"^(8\d{4},)(.+)", "territory":"^(\d{2},)(.+)",
+                   "mod_fips":"^(\d{4},)", "mod_date":"(\d{4}-\d{2}-\d{2})",
+                   "non_grep":"[[11,12],round(x,3)]"}
+
+JHUC_COLNUM: Set = set([0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 12])
 # above fields are: FIPS,County,State,Last_Update,Lat,Long,Confirmed,Deaths,Active,Combined_Key,Case_Fatality_Ratio
+# skipped are 4.Country_Region and 11.Incident_Rate
 JHUC_DTYPE: Dict = {'FIPS':str, 'Confirmed':int, 'Deaths':int, 'Active':int}
 JHUC_RENAM: Dict = {'Combined_Key': 'Long_Name', 'Last_Update': 'Updated', 'Case_Fatality_Ratio': 'JHU_Fate_Rate'}
 
