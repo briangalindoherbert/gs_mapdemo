@@ -11,7 +11,7 @@ import csv
 from gs_datadict import GREP_PREP
 
 DATADIR: str = "rawdata"
-ctyfile = os.path.join(DATADIR, '12-09-2020.csv')
+ctyfile = os.path.join(DATADIR, '12-12-2020.csv')
 
 def do_greps(this_row: list=[], grepf: dict={}):
 	"""
